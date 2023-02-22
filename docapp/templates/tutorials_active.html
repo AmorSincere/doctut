@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{tutorial.tutorial_name}}
+{% endblock%}
+
+
+{% block content %}
+<div class="container-fluid py-5 "  style="height:90vh">
+    <div class="row">
+        <div class="col-4 bg-light"   style="height:90vh">
+            <h4 class="text-center">{{tutorial.tutorial_name}}</h4>
+            {% for i in subjects %}
+            <a href="{% url 'docapp:tutorials_active' generated_code_tut=tutorial.generated_code generated_code_subject=i.generated_code %}"
+               class="d-block p-1 m-1 bg-white">{{i.subject_name}}
+            </a>
+
+            {% empty %}
+            <p class="text-center text-danger mt-5">you have no subject yet. have a good time</p>
+            {% endfor %}
+        </div>
+
+        <div class="col-8"  style="height:90vh;overflow-y:scroll;">
+            {% for i in contents %}
+            <p  class="d-block p-2 mt-3 bg-light">{{i.content}}</p>
+
+            {% empty %}
+            <p class="text-center text-danger mt-5">you have no content yet. have a good time</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock%}
